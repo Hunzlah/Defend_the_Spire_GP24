@@ -147,7 +147,18 @@ class Grid {
             return grid[y][x];
         }
         Cell GetNextPoint(int x, int y){
-            
+            int currentDistance = GetCell(x,y).distance;
+            Cell next = GetCell(x,y);
+            vector<Cell> neighbors = GetNeighbors(x,y);
+            for(const Cell& neighbor : neighbors)
+            {
+                if(currentDistance > neighbor.distance)
+                {
+                    next = neighbor;
+                    break;
+                }
+            }
+            return next;
         }
     
     private:

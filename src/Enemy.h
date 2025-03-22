@@ -9,9 +9,18 @@ class Enemy {
     public:
         Vector2 position;
         Vector2 target;
+        Vector2 cellPostion;
     
-        Enemy(Vector2 pos, Vector2 tgt) : position(pos), target(tgt) {}
-    
+        Enemy(Vector2 pos) : position(pos) {}
+
+        void SetTarget(Vector2 _target)
+        {
+            target = _target;
+        }
+        void SetCellPosition(Vector2 _cellPos)
+        {
+            cellPostion = _cellPos;
+        }
         void Update() {
             Vector2 direction = { target.x - position.x, target.y - position.y };
             float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
@@ -22,7 +31,12 @@ class Enemy {
                 position.y += direction.y * speed;
             }
         }
-    
+        float CurrentDistanceToTarget()
+        {
+            Vector2 direction = { target.x - position.x, target.y - position.y };
+            float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
+            return length;
+        }
         void Draw() {
             DrawCircle((int)position.x, (int)position.y, 10, BLUE);
         }
