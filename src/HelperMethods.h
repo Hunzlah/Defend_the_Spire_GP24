@@ -8,3 +8,7 @@ char* IntToCharPointer(int value) {
     std::snprintf(result, 12, "%d", value); // Convert int to string
     return result;
 }
+float GetRandomNumberInRange(int max)
+{
+    return (float)(rand() % max);
+}

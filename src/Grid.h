@@ -7,6 +7,7 @@
 #include <iostream>
 #include "stack"
 #include "queue"
+#include <bits/stdc++.h>
 using namespace std;
 
 
@@ -107,11 +108,17 @@ class Grid {
         {
             grid[y][x].distance = distance;
         }
-        void AddWalls() {
-            // Add some random walls for demo
-            for (int i = 5; i < 10; i++) {
-                grid[3][i].cellType = WALL;
-                grid[7][i].cellType = WALL;
+        void AddWalls() 
+        {
+            for (int y = 0; y < rows; y++) 
+            {
+                for (int x = 0; x < cols; x++) 
+                {
+                    if(GetRandomNumberInRange(10) > 8)
+                    {
+                        grid[y][x].cellType = WALL;
+                    }
+                }
             }
         }
     
@@ -125,10 +132,10 @@ class Grid {
                     DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, color);
                     if (grid[y][x].cellType == WALL) {
                         DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, color);
-                    } else if (grid[y][x].cellType == TOWER) {
-                        DrawCircle(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, RED);
-                    }
-                    //char* numberStr = IntToCharPointer(grid[y][x].distance);
+                    } 
+                    //else if (grid[y][x].cellType == TOWER) {
+                    //    DrawCircle(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, RED);
+                    //}
                     DrawText(IntToCharPointer(grid[y][x].distance), 
                     x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, BLACK);
                 }
@@ -150,6 +157,7 @@ class Grid {
             int currentDistance = GetCell(x,y).distance;
             Cell next = GetCell(x,y);
             vector<Cell> neighbors = GetNeighbors(x,y);
+            ShuffleNeighbours(neighbors);
             for(const Cell& neighbor : neighbors)
             {
                 if(currentDistance > neighbor.distance)
@@ -159,6 +167,11 @@ class Grid {
                 }
             }
             return next;
+        }
+        vector<Cell> ShuffleNeighbours(vector<Cell> neighbours)
+        {
+            random_shuffle(neighbours.begin(), neighbours.end());
+            return neighbours;
         }
     
     private:

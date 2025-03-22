@@ -10,8 +10,9 @@ class Enemy {
         Vector2 position;
         Vector2 target;
         Vector2 cellPostion;
+        int Id;
     
-        Enemy(Vector2 pos) : position(pos) {}
+        Enemy(Vector2 pos, int _id) : position(pos), Id(_id) {}
 
         void SetTarget(Vector2 _target)
         {
