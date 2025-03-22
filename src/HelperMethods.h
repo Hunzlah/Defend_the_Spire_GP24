@@ -1,20 +1,10 @@
 #pragma once
-#include "raylib.h"
-#include "GamePlay.h"
-#include "GameStates.h"
+#include <cstdio>  // for snprintf
+#include <cstdlib> // for malloc / free
 
-// Button struct for easier button handling
-struct Button {
-    Rectangle rect;
-    const char* text;
-};
-
-// Function to check if a button is clicked
-bool IsButtonClicked(Button button) {
-    return (CheckCollisionPointRec(GetMousePosition(), button.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON));
-}
-void InitializeMazeAndStartLevel(){
-    InitializeGameplayValues();
-    InitMaze();
-    currentGameState = Gameplay;
+char* IntToCharPointer(int value) {
+    // Allocate enough space for the string (max 11 chars for int32 + null terminator)
+    char* result = new char[12]; 
+    std::snprintf(result, 12, "%d", value); // Convert int to string
+    return result;
 }

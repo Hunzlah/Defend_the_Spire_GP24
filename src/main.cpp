@@ -1,55 +1,41 @@
-#include "GamePlay.h"
-#include "MainMenu.h"
-#include "GameStates.h"
-#include "GameOver.h"
-#include "resource_dir.h"
-int main()
-{
-    
-    InitializeGameplayValues();
-    currentLevel = 1;
+#include "raylib.h"
+#include "Grid.h"
+#include "Constants.h"
+#include "Enemy.h"
 
-    
 
-    SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI);
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Maze Game - Click to Move");
-    SearchAndSetResourceDir("resources");
-    fireTexture = LoadTexture("fire.png");
-    grassTexture = LoadTexture("grass.png");
-    playerTexture = LoadTexture("player.png");
+
+
+int main() {
+    InitWindow(screenWidth, screenHeight, "Grid with Tower and Enemy");
     SetTargetFPS(60);
-    InitMaze();
-    bool isManualExit = false;
-    while (!WindowShouldClose())
-    {
-        switch (currentGameState)
-        {
-        case MainMenu:
-        if (currentMenuScreen == EXIT)
-            {
-                isManualExit = true;
-            }
-            else
-            {
-                MainMenuHandler();
-            }
-            break;
-        case Gameplay:
-            GamePlayHandler();
-            break;
-        case GameOver:
-            GameOverHandler();
-            break;
 
-        default:
-            break;
-        }
-        if(isManualExit) break;
+    Grid grid;
+
+    // Tower at center
+    int towerX = cols / 2;
+    int towerY = rows / 2;
+    grid.Initialize();
+    grid.SetTowerCell(towerX, towerY, TOWER);
+    grid.SetPathToTower(towerX, towerY);
+
+    // Enemy starts at top-left corner
+    Vector2 enemyPos = { 0.0f, 0.0f };
+    Vector2 towerPos = { towerX * cellSize + cellSize / 2, towerY * cellSize + cellSize / 2 };
+    Enemy enemy(enemyPos, towerPos);
+
+    while (!WindowShouldClose()) {
+        enemy.Update();
+
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        grid.Draw();
+        enemy.Draw();
+
+        EndDrawing();
     }
 
-    UnloadTexture(grassTexture);
-    UnloadTexture(fireTexture);
-    UnloadTexture(playerTexture);
     CloseWindow();
     return 0;
 }
