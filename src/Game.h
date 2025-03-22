@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "Constants.h"
 #include "Enemy.h"
+#include "GameStates.h"
 
 Grid grid;
 vector<Enemy> enemies;
@@ -41,6 +42,12 @@ void SetEnemyNextTargetPosition(Enemy* enemy)
     if(enemy->cellPostion.x == enemyTargetCell.positionX && enemy->cellPostion.y == enemyTargetCell.positionY)
     {
         RemoveEnemy(enemy);
+        castleHp = castleHp - 1 <= 0 ? 0 : castleHp-1;
+        if(castleHp == 0)
+        {
+            gameOverState = LEVEL_FAILED;
+            currentGameState = GameOver;
+        }
         return;
     }
 
@@ -131,13 +138,37 @@ void CheckPlayerCollisionWithEnemies()
         RemoveEnemy(&enemy);
     }
 }
+void DrawGameStats()
+{
+    char result[100];
+    strcpy(result, "HP: ");
+    strcat(result, std::to_string(castleHp).c_str());
+    DrawText(result, screenWidth / 2 - 100, screenHeight - 50, 30,
+             currentScore < 100 ? RED : GREEN);
+
+    strcpy(result, "Level ");
+    strcat(result, std::to_string(currentLevel).c_str());
+    DrawText(result, screenWidth / 2 + 250, screenHeight - 50, 15, DARKGREEN);
+
+    strcpy(result, "Time: ");
+    int levelTimerInt = levelPassTime - levelTimer;
+    strcat(result, std::to_string(levelTimerInt).c_str());
+    DrawText(result, screenWidth / 2 - 250, screenHeight - 50, 30,
+        currentScore < 100 ? RED : GREEN);
+}
 void GameHandler()
 {
     BeginDrawing();
         ClearBackground(BLACK);
         CheckPlayerCollisionWithEnemies();
         enemySpawnTimer += GetFrameTime();
-
+        levelTimer += GetFrameTime();
+        if(levelTimer >= levelPassTime)
+        {
+            gameOverState = LEVEL_PASSED;
+            currentGameState = GameOver;
+            return;
+        }
         if(enemySpawnTimer > 0.5f)
         {
             SpawnNewEnemy();
@@ -154,6 +185,7 @@ void GameHandler()
             }
             enemy.Draw();
         }
+        DrawGameStats();
         
         EndDrawing();
 }

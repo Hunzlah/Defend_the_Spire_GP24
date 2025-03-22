@@ -115,7 +115,7 @@ class Grid {
             {
                 for (int x = 0; x < cols; x++) 
                 {
-                    if(GetRandomNumberInRange(10) > 8)
+                    if(GetRandomNumberInRange(10) > 7)
                     {
                         grid[y][x].cellType = WALL;
                     }
@@ -126,11 +126,11 @@ class Grid {
         void Draw() {
             for (int y = 0; y < rows; y++) {
                 for (int x = 0; x < cols; x++) {
-                    Color color = LIGHTGRAY;
-                    if (grid[y][x].cellType == WALL) color = DARKGRAY;
-                    else if (grid[y][x].cellType == TOWER) color = RED;
+                    //Color color = LIGHTGRAY;
+                    //if (grid[y][x].cellType == WALL) color = DARKGRAY;
+                    //else if (grid[y][x].cellType == TOWER) color = RED;
     
-                    DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, color);
+                    //DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, color);
                     if (grid[y][x].cellType == WALL) {
                         DrawTexture(wallTexture, x * cellSize, y * cellSize, WHITE);
                         //DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, color);

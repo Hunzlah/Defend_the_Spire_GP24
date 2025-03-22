@@ -39,10 +39,10 @@ void MainMenuHandler(){
                 
             case HOW_TO_PLAY:
                 DrawText("How to Play", screenWidth / 2 - 100, 100, 30, DARKGRAY);
-                DrawText("Use the mouse button to navigate player in highlighted tiles.", 100, 200, 20, DARKGRAY);
-                DrawText("Reach the goal before player Hp gets below zero!", 100, 250, 20, DARKGRAY);
-                DrawText("Grass Rooms increase hp by 1", 100, 300, 20, DARKGRAY);
-                DrawText("Fire Rooms decrease hp by 1", 100, 350, 20, DARKGRAY);
+                DrawText("Defend your castle from aliens", 100, 200, 20, DARKGRAY);
+                DrawText("", 100, 250, 20, DARKGRAY);
+                DrawText("Tap on enemies to kill them", 100, 300, 20, DARKGRAY);
+                DrawText("Make sure they don't destroy your castle", 100, 350, 20, DARKGRAY);
                 DrawRectangleRec(backButton.rect, LIGHTGRAY);
                 DrawText(backButton.text, backButton.rect.x + 70, backButton.rect.y + 15, 20, DARKGRAY);
                 if (IsButtonClicked(backButton)) currentMenuScreen = MENU;

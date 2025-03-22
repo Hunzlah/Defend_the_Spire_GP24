@@ -14,6 +14,9 @@ GameState currentGameState = MainMenu;
 MenuScreen currentMenuScreen = MENU;
 GameOverState gameOverState = LEVEL_PASSED;
 
-int defaultScore = 170;
 int currentScore;
-int currentLevel;
+int currentLevel = 1;
+
+int castleHp;
+float levelPassTime;
+float levelTimer;

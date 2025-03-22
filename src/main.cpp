@@ -9,6 +9,7 @@ int main() {
     InitWindow(screenWidth, screenHeight, "Defend the Spire");
     SearchAndSetResourceDir("resources");
     LoadTextures();
+    InitializeLevelSettings();
     InitializeGameSettings();
     SetTargetFPS(60);
     bool isManualExit = false;

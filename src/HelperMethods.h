@@ -2,6 +2,7 @@
 #include <cstdio>  // for snprintf
 #include <cstdlib> // for malloc / free
 #include "raylib.h"
+#include "GameStates.h"
 struct Button {
     Rectangle rect;
     const char* text;
@@ -21,4 +22,11 @@ float GetRandomNumberInRange(int max)
 // Function to check if a button is clicked
 bool IsButtonClicked(Button button) {
     return (CheckCollisionPointRec(GetMousePosition(), button.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON));
+}
+
+void InitializeLevelSettings()
+{
+    castleHp = 50;
+    levelPassTime = 20 * currentLevel;
+    levelTimer = 0;
 }

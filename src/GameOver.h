@@ -23,7 +23,9 @@ void GameOverHandler(){
             
             if (IsButtonClicked(nextLevelBtn)) {
                 currentLevel += 1;
-                //InitializeMazeAndStartLevel();
+                InitializeGameSettings();
+                InitializeLevelSettings();
+                currentGameState = Gameplay;
             }
         } 
         else if (gameOverState == LEVEL_FAILED) {
@@ -34,7 +36,9 @@ void GameOverHandler(){
             DrawText(retryBtn.text, retryBtn.rect.x + 50, retryBtn.rect.y + 15, 20, WHITE);
             
             if (IsButtonClicked(retryBtn)) {
-                //InitializeMazeAndStartLevel();
+                InitializeGameSettings();
+                InitializeLevelSettings();
+                currentGameState = Gameplay;
             }
         }
 
