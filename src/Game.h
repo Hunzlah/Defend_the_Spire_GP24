@@ -141,7 +141,7 @@ void CheckPlayerCollisionWithEnemies()
 void DrawGameStats()
 {
     char result[100];
-    strcpy(result, "HP: ");
+    strcpy(result, "Castle HP: ");
     strcat(result, std::to_string(castleHp).c_str());
     DrawText(result, screenWidth / 2 - 100, screenHeight - 50, 30,
              currentScore < 100 ? RED : GREEN);
@@ -153,8 +153,8 @@ void DrawGameStats()
     strcpy(result, "Time: ");
     int levelTimerInt = levelPassTime - levelTimer;
     strcat(result, std::to_string(levelTimerInt).c_str());
-    DrawText(result, screenWidth / 2 - 250, screenHeight - 50, 30,
-        currentScore < 100 ? RED : GREEN);
+    DrawText(result, screenWidth / 2 - 350, screenHeight - 50, 30,
+        WHITE);
 }
 void GameHandler()
 {

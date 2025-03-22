@@ -13,7 +13,7 @@ class Enemy {
         float size;
         int Id;
     
-        Enemy(Vector2 pos, int _id) : position(pos), Id(_id), size(10) {}
+        Enemy(Vector2 pos, int _id) : position(pos), Id(_id), size(16) {}
 
         void SetTarget(Vector2 _target)
         {
