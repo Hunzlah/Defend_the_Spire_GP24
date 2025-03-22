@@ -1,14 +1,15 @@
-#include "Headers.h"
+#pragma once
+#include "raylib.h"
 #include "Constants.h"
 #include "GameStates.h"
 #include "HelperMethods.h"
 
 // Define buttons
-Button playButton = {{SCREEN_WIDTH / 2 - 100, 200, 200, 50}, "Play"};
-Button howToPlayButton = {{SCREEN_WIDTH / 2 - 100, 270, 200, 50}, "How to Play"};
-Button creditsButton = {{SCREEN_WIDTH / 2 - 100, 340, 200, 50}, "Credits"};
-Button quitButton = {{SCREEN_WIDTH / 2 - 100, 410, 200, 50}, "Quit"};
-Button backButton = {{SCREEN_WIDTH / 2 - 100, 500, 200, 50}, "Back"};
+Button playButton = {{screenWidth / 2 - 100, 200, 200, 50}, "Play"};
+Button howToPlayButton = {{screenWidth / 2 - 100, 270, 200, 50}, "How to Play"};
+Button creditsButton = {{screenWidth / 2 - 100, 340, 200, 50}, "Credits"};
+Button quitButton = {{screenWidth / 2 - 100, 410, 200, 50}, "Quit"};
+Button backButton = {{screenWidth / 2 - 100, 500, 200, 50}, "Back"};
 
 void MainMenuHandler(){
     BeginDrawing();
@@ -16,7 +17,7 @@ void MainMenuHandler(){
 
         switch (currentMenuScreen) {
             case MENU:
-                DrawText("Main Menu", SCREEN_WIDTH / 2 - 90, 100, 30, DARKGRAY);
+                DrawText("Main Menu", screenWidth / 2 - 90, 100, 30, DARKGRAY);
                 
                 DrawRectangleRec(playButton.rect, LIGHTGRAY);
                 DrawText(playButton.text, playButton.rect.x + 50, playButton.rect.y + 15, 20, DARKGRAY);
@@ -37,7 +38,7 @@ void MainMenuHandler(){
                 break;
                 
             case HOW_TO_PLAY:
-                DrawText("How to Play", SCREEN_WIDTH / 2 - 100, 100, 30, DARKGRAY);
+                DrawText("How to Play", screenWidth / 2 - 100, 100, 30, DARKGRAY);
                 DrawText("Use the mouse button to navigate player in highlighted tiles.", 100, 200, 20, DARKGRAY);
                 DrawText("Reach the goal before player Hp gets below zero!", 100, 250, 20, DARKGRAY);
                 DrawText("Grass Rooms increase hp by 1", 100, 300, 20, DARKGRAY);
@@ -48,7 +49,7 @@ void MainMenuHandler(){
                 break;
                 
             case CREDITS:
-                DrawText("Credits", SCREEN_WIDTH / 2 - 60, 100, 30, DARKGRAY);
+                DrawText("Credits", screenWidth / 2 - 60, 100, 30, DARKGRAY);
                 DrawText("Created by: Hunzlah Bin Saghir", 100, 200, 20, DARKGRAY);
                 DrawRectangleRec(backButton.rect, LIGHTGRAY);
                 DrawText(backButton.text, backButton.rect.x + 70, backButton.rect.y + 15, 20, DARKGRAY);

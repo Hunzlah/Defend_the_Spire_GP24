@@ -2,7 +2,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "Constants.h"
-
+#include "Textures.h"
 
 // Enemy that moves toward tower
 class Enemy {
@@ -10,9 +10,10 @@ class Enemy {
         Vector2 position;
         Vector2 target;
         Vector2 cellPostion;
+        float size;
         int Id;
     
-        Enemy(Vector2 pos, int _id) : position(pos), Id(_id) {}
+        Enemy(Vector2 pos, int _id) : position(pos), Id(_id), size(10) {}
 
         void SetTarget(Vector2 _target)
         {
@@ -39,7 +40,8 @@ class Enemy {
             return length;
         }
         void Draw() {
-            DrawCircle((int)position.x, (int)position.y, 10, BLUE);
+            //DrawCircle((int)position.x, (int)position.y, size, BLUE);
+            DrawTexture(enemyTexture, (int)position.x, (int)position.y, WHITE);
         }
     
     private:

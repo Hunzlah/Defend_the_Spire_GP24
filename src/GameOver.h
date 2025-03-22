@@ -1,12 +1,12 @@
-#include "Headers.h"
+#pragma once
 #include "Constants.h"
 #include "GameStates.h"
 #include "HelperMethods.h"
 
 // Buttons
-Button nextLevelBtn = { { SCREEN_WIDTH / 2 - 75, 250, 150, 50 }, "Next Level" };
-Button retryBtn = { { SCREEN_WIDTH / 2 - 75, 250, 150, 50 }, "Retry"};
-Button mainMenuBtn = { { SCREEN_WIDTH / 2 - 75, 320, 150, 50 }, "Main Menu"};
+Button nextLevelBtn = { { screenWidth / 2 - 75, 250, 150, 50 }, "Next Level" };
+Button retryBtn = { { screenWidth / 2 - 75, 250, 150, 50 }, "Retry"};
+Button mainMenuBtn = { { screenWidth / 2 - 75, 320, 150, 50 }, "Main Menu"};
 
 
 void GameOverHandler(){
@@ -15,7 +15,7 @@ void GameOverHandler(){
         ClearBackground(RAYWHITE);
 
         if (gameOverState == LEVEL_PASSED) {
-            DrawText("Level Passed!", SCREEN_WIDTH / 2 - 100, 100, 30, GREEN);
+            DrawText("Level Passed!", screenWidth / 2 - 100, 100, 30, GREEN);
             
             // Draw Next Level Button
             DrawRectangleRec(nextLevelBtn.rect, GRAY);
@@ -23,18 +23,18 @@ void GameOverHandler(){
             
             if (IsButtonClicked(nextLevelBtn)) {
                 currentLevel += 1;
-                InitializeMazeAndStartLevel();
+                //InitializeMazeAndStartLevel();
             }
         } 
         else if (gameOverState == LEVEL_FAILED) {
-            DrawText("Level Failed!", SCREEN_WIDTH / 2 - 100, 100, 30, RED);
+            DrawText("Level Failed!", screenWidth / 2 - 100, 100, 30, RED);
             
             // Draw Retry Button
             DrawRectangleRec(retryBtn.rect, GRAY);
             DrawText(retryBtn.text, retryBtn.rect.x + 50, retryBtn.rect.y + 15, 20, WHITE);
             
             if (IsButtonClicked(retryBtn)) {
-                InitializeMazeAndStartLevel();
+                //InitializeMazeAndStartLevel();
             }
         }
 

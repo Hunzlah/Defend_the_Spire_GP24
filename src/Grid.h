@@ -8,6 +8,7 @@
 #include "stack"
 #include "queue"
 #include <bits/stdc++.h>
+#include "Textures.h"
 using namespace std;
 
 
@@ -131,13 +132,18 @@ class Grid {
     
                     DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, color);
                     if (grid[y][x].cellType == WALL) {
-                        DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, color);
+                        DrawTexture(wallTexture, x * cellSize, y * cellSize, WHITE);
+                        //DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, color);
                     } 
-                    //else if (grid[y][x].cellType == TOWER) {
-                    //    DrawCircle(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, RED);
-                    //}
-                    DrawText(IntToCharPointer(grid[y][x].distance), 
-                    x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, BLACK);
+                    else if (grid[y][x].cellType == TOWER) {
+                        DrawTexture(castleTexture, x * cellSize, y * cellSize, WHITE);
+                        //DrawCircle(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, RED);
+                    }else if(grid[y][x].cellType == EMPTY)
+                    {
+                        DrawTexture(groundTexture, x * cellSize, y * cellSize, WHITE);
+                    }
+                    //DrawText(IntToCharPointer(grid[y][x].distance), 
+                    //x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 10, BLACK);
                 }
             }
         }
