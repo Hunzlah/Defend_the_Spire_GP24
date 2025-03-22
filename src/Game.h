@@ -78,7 +78,7 @@ void SpawnNewEnemy()
 {
     // Enemy starts at top-left corner
     Vector2 enemyCellPos = GetRandomSpawnCellPosition();
-    while (grid.GetCell(enemyCellPos.x, enemyCellPos.y).cellType != WALL)
+    while (grid.GetCell(enemyCellPos.x, enemyCellPos.y).cellType == WALL)
     {
         enemyCellPos = GetRandomSpawnCellPosition();
     }
